@@ -1,0 +1,19 @@
+.slider-wrapper {
+    display: flex;
+    padding: 1vw;
+    border: 2px black solid;
+    align-items: center;
+}
+
+.slider-wrapper div {
+    margin: 2vw;
+    height: 10vw;
+    width: 7vw;
+    cursor: pointer;
+    transition: 1s;
+}
+
+#active {
+    min-height: 20vw;
+    width: 20vw;
+}
