@@ -17,6 +17,8 @@ const Pagination = () => {
 Зробити новий стан, в якому буде зберігатися активне число
 повертати в мапі лише 5 чисел відштовхуючись від активного по 2 з кожної сторони
  */
+    //Todo: new state for active value, finished logic for dropdown(divide numbers by active dropdownOptions),
+    // return in map only 5 numbers and +two by every side from active number
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     }
