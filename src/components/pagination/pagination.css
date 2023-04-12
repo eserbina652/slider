@@ -1,0 +1,33 @@
+.cell {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.active{
+    border: 1px solid blue;
+    border-radius: 5px;
+    color: blue;
+    font-weight: bold;
+}
+
+.numbers{
+    padding: 20px;
+}
+
+.pagination{
+    display: flex;
+    align-items: center;
+}
+.liOpen {
+    font-weight: bold;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    list-style-type: none;
+    background-color: #bcdbfc;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.liOpen:hover {
+    background-color: #bcdbfc !important;
+}

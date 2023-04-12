@@ -1,0 +1,12 @@
+.imageWrap{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 15px;
+}
+
+.images{
+    width:15px;
+    height: 10px;
+    opacity: 0.5;
+}
