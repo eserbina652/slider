@@ -1,9 +1,9 @@
 import React from 'react';
 import './pagination.css'
-const Cell = ({el, index}) => {
+const Cell = ({el, changeActiveNumber, activeNumber}) => {
     return (
         <>
-            <div className={el===6?'cell active':'cell'}>
+            <div onClick={() => changeActiveNumber(el)} className={el===activeNumber?'cell active':'cell'}>
                 {el}
             </div>
         </>
