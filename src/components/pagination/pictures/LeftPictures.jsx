@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {dots, leftArrowHover} from "../../../assets/images/images";
 import './pictures.css'
 
-const LeftPictures = ({setActiveNumber}) => {
+const LeftPictures = ({setCurrentPage}) => {
     const [isHovered, setIsHovered] = useState(false);
     const [imageLeftSrc, setImageLeftSrc] = useState(dots);
 
@@ -20,12 +20,12 @@ const LeftPictures = ({setActiveNumber}) => {
             className='imageWrap'
             onMouseEnter={handleLeftMouseEnter}
             onMouseLeave={handleLeftMouseLeave}
-            onClick={() => setActiveNumber(prevState =>  {
-                const newActiveNumber = prevState - 5
-                if (newActiveNumber<1){
+            onClick={() => setCurrentPage(prevState =>  {
+                const newCurrentPage = prevState - 5
+                if (newCurrentPage<1){
                     return 1
                 }
-                return newActiveNumber
+                return newCurrentPage
             })}
         >
             <img className='images' src={imageLeftSrc} alt="My Image"/>

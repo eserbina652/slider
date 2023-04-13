@@ -1,3 +1,19 @@
+.page-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.pageInfo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.oneOfData{
+    padding: 15px;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
 .cell {
     padding: 10px 15px;
     cursor: pointer;
@@ -24,7 +40,10 @@
 
 .pagination{
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: 130px;
+
 }
 .liOpen {
     font-weight: bold;

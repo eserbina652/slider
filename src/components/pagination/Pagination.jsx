@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './pagination.css'
 import Cell from "./Cell";
 import res from "../../data/data";
@@ -9,18 +9,20 @@ import {downArrow, leftArrow, rightArrow} from "../../assets/images/images";
 
 
 const dropdownOptions = [10, 20, 50, 100]
+const data = res
+
 const Pagination = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [dropdownName, setDropdownName] = useState(dropdownOptions[0])
     const [numbers, setNumbers] = useState(res)
-    const [activeNumber, setActiveNumber] = useState(6)
+    const [currentPage, setCurrentPage] = useState(1)
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     }
 
-    const handleChangeActiveNumber = (el) => {
-        setActiveNumber(el)
+    const handleChangeCurrentPage = (el) => {
+        setCurrentPage(el)
     }
 
     const lastOfNumbers = () => {
@@ -35,62 +37,65 @@ const Pagination = () => {
         })
     }
 
-
-    return (<>
+    return (<div className='page-wrapper'>
             <div className="pageInfo">
-
+                {data.map((el, index) => {
+                    if (el<=dropdownName*currentPage&&el>(dropdownName*currentPage)-dropdownName){
+                        return <div className='oneOfData' key={index}>{el}</div>
+                    }
+                })}
             </div>
             <div className='pagination'>
                 <div className="imageWrap">
-                    <img onClick={() => setActiveNumber(prevState => {
-                        const newActiveNumber = prevState - 1
-                        if (newActiveNumber < 1) {
+                    <img onClick={() => setCurrentPage(prevState => {
+                        const newCurrentPage = prevState - 1
+                        if (newCurrentPage < 1) {
                             return 1
                         }
-                        return newActiveNumber
+                        return newCurrentPage
                     })} className='images' src={leftArrow} alt="one to left"/>
                 </div>
 
-                {activeNumber <= 3 || numbers.map((el, index) => {
+                {currentPage <= 3 || numbers.map((el, index) => {
                     if (el === 1) {
-                        return <Cell activeNumber={activeNumber} changeActiveNumber={handleChangeActiveNumber} el={el}
+                        return <Cell CurrentPage={currentPage} changeCurrentPage={handleChangeCurrentPage} el={el}
                                      key={index} index={index}/>
                     }
                 })}
-                {activeNumber <= 4 || <LeftPictures setActiveNumber={setActiveNumber}/>}
+                {currentPage <= 4 || <LeftPictures setCurrentPage={setCurrentPage}/>}
                 {numbers.map((el, index) => {
-                    if (el >= activeNumber - 2 && el <= activeNumber + 2) {
-                        return <Cell activeNumber={activeNumber} changeActiveNumber={handleChangeActiveNumber} el={el}
+                    if (el >= currentPage - 2 && el <= currentPage + 2) {
+                        return <Cell currentPage={currentPage} changeCurrentPage={handleChangeCurrentPage} el={el}
                                      key={index} index={index}/>
                     }
-                    if (activeNumber < 4) {
-                        if (el < activeNumber || el <= 5) {
-                            return <Cell activeNumber={activeNumber} changeActiveNumber={handleChangeActiveNumber} el={el}
+                    if (currentPage < 4) {
+                        if (el < currentPage || el <= 5) {
+                            return <Cell currentPage={currentPage} changeCurrentPage={handleChangeCurrentPage} el={el}
                                          key={index} index={index}/>
                         }
                     }
-                    if (activeNumber > numbers[numbers.length - 4]) {
+                    if (currentPage > numbers[numbers.length - 4]) {
                         if (el <= numbers[numbers.length - 1] && el >= numbers[numbers.length - 5]) {
-                            return <Cell activeNumber={activeNumber} changeActiveNumber={handleChangeActiveNumber} el={el}
+                            return <Cell currentPage={currentPage} changeCurrentPage={handleChangeCurrentPage} el={el}
                                          key={index} index={index}/>
                         }
                     }
                 })}
-                {activeNumber >= numbers[numbers.length - 4] ||
-                    <RightPictures numbers={numbers} setActiveNumber={setActiveNumber}/>}
-                {activeNumber >= numbers[numbers.length - 3] || numbers.map((el, index) => {
+                {currentPage >= numbers[numbers.length - 4] ||
+                    <RightPictures numbers={numbers} setCurrentPage={setCurrentPage}/>}
+                {currentPage >= numbers[numbers.length - 3] || numbers.map((el, index) => {
                     if (el === numbers[numbers.length - 1]) {
-                        return <Cell activeNumber={activeNumber} changeActiveNumber={handleChangeActiveNumber} el={el}
+                        return <Cell currentPage={currentPage} changeCurrentPage={handleChangeCurrentPage} el={el}
                                      key={index} index={index}/>
                     }
                 })}
                 <div className="imageWrap">
-                    <img onClick={() => setActiveNumber(prevState => {
-                        const newActiveNumber = prevState + 1
-                        if (newActiveNumber > numbers[numbers.length - 1]) {
+                    <img onClick={() => setCurrentPage(prevState => {
+                        const newCurrentPage = prevState + 1
+                        if (newCurrentPage > numbers[numbers.length - 1]) {
                             return numbers[numbers.length - 1]
                         }
-                        return newActiveNumber
+                        return newCurrentPage
                     })} className='images' src={rightArrow} alt="one to right"/>
                 </div>
                 <div className="dropdown">
@@ -113,7 +118,7 @@ const Pagination = () => {
                     }
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
