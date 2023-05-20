@@ -1,13 +1,11 @@
 import React from 'react';
 import './dropdown.css'
 
-const Dropdown = ({dropdownName, setDropdownName, toggleDropdown, el, lastOfNumbers}) => {
+const Dropdown = ({dropdownValue, setDropdownValue, el}) => {
     return (
-        <li className={dropdownName === el ? 'liOpen' : undefined}
+        <li className={dropdownValue === el ? 'liOpen' : undefined}
             onClick={() => {
-                lastOfNumbers()
-                setDropdownName(el)
-                toggleDropdown()
+                setDropdownValue(el)
             }}>
             {el} / pages</li>
     );

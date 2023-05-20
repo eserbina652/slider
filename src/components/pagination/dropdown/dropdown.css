@@ -5,6 +5,7 @@
     padding: 5px 0;
     border-radius: 5px;
     box-shadow:  0 1px 5px 0 #646464bf;
+    margin-left: 15px;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -21,6 +22,7 @@
     margin-left: 15px;
 }
 .dropdown-open {
+    margin-left: 15px;
     color: dimgray;
     border: 1px blue solid;
     background-color: white;
